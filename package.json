@@ -12,6 +12,8 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@felte/solid": "^1.2.13",
+    "@felte/validator-zod": "^1.0.17",
     "@kobalte/core": "^0.13.4",
     "@tauri-apps/api": "^1",
     "class-variance-authority": "^0.7.0",
@@ -20,6 +22,7 @@
     "solid-zustand": "^1.8.1",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
+    "zod": "^3.23.8",
     "zustand": "^4.5.4"
   },
   "devDependencies": {

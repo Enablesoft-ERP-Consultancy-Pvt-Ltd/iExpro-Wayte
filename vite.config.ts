@@ -1,6 +1,6 @@
 import { defineConfig } from "vite";
 import solid from "vite-plugin-solid";
-import path from "path"
+import path from "node:path";
 
 // https://vitejs.dev/config/
 export default defineConfig(async () => ({
@@ -22,7 +22,7 @@ export default defineConfig(async () => ({
 
   resolve: {
     alias: {
-      "~": path.resolve(__dirname, "./src")
-    }
-  }
+      "~": path.resolve(__dirname, "./src"),
+    },
+  },
 }));

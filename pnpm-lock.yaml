@@ -8,6 +8,12 @@ importers:
 
   .:
     dependencies:
+      '@felte/solid':
+        specifier: ^1.2.13
+        version: 1.2.13(solid-js@1.8.20)
+      '@felte/validator-zod':
+        specifier: ^1.0.17
+        version: 1.0.17(zod@3.23.8)
       '@kobalte/core':
         specifier: ^0.13.4
         version: 0.13.4(solid-js@1.8.20)
@@ -32,6 +38,9 @@ importers:
       tailwindcss-animate:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@3.4.9)
+      zod:
+        specifier: ^3.23.8
+        version: 3.23.8
       zustand:
         specifier: ^4.5.4
         version: 4.5.4(react@18.3.1)
@@ -359,6 +368,26 @@ packages:
     engines: {node: '>=12'}
     cpu: [x64]
     os: [win32]
+
+  '@felte/common@1.1.8':
+    resolution: {integrity: sha512-VbEOfNLWfDx0SpCfeE+fNWDpvcntND4MFs7Lxd18RIjrZYH82D0wWe9th2oVF9QT5XzgBEdMF5NGIttcwU4sjg==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+
+  '@felte/core@1.4.3':
+    resolution: {integrity: sha512-DoXTuHD4atDG0SfTfI4orllcnriHRgM/ijMdRsUbLPL7O/UWGSWNXkxErx7XPbWOXMjX0J79KLfxZzm9abOCxw==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+
+  '@felte/solid@1.2.13':
+    resolution: {integrity: sha512-ngJgNRe0Frxl6iypCFbpKxs+xGw3MXucttqbCDAx7rSFe4BL9NqLDr65CZhd28KY4NRjbnYgAqT0mf0HxHz9Vw==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+    peerDependencies:
+      solid-js: ^1.2.0
+
+  '@felte/validator-zod@1.0.17':
+    resolution: {integrity: sha512-rOX1chLfTcixKMPEdrMSi8zsCM685Dsoy1a5qN1G6Fyh7HYK1vSmI6SfJ7m92DOt6kV+vAP4m5rk94Y8UFIeVw==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+    peerDependencies:
+      zod: ^3.2.0
 
   '@floating-ui/core@1.6.7':
     resolution: {integrity: sha512-yDzVT/Lm101nQ5TCVeK65LtdN7Tj4Qpr9RTXJ2vPFLqtLxwOrpoxAHAJI8J3yYWUc40J0BDBheaitK5SJmno2g==}
@@ -1298,6 +1327,9 @@ packages:
     engines: {node: '>= 14'}
     hasBin: true
 
+  zod@3.23.8:
+    resolution: {integrity: sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==}
+
   zustand@4.5.4:
     resolution: {integrity: sha512-/BPMyLKJPtFEvVL0E9E9BTUM63MNyhPGlvxk1XjrfWTUlV+BR8jufjsovHzrtR6YNcBEcL7cMHovL1n9xHawEg==}
     engines: {node: '>=12.7.0'}
@@ -1558,6 +1590,22 @@ snapshots:
 
   '@esbuild/win32-x64@0.21.5':
     optional: true
+
+  '@felte/common@1.1.8': {}
+
+  '@felte/core@1.4.3':
+    dependencies:
+      '@felte/common': 1.1.8
+
+  '@felte/solid@1.2.13(solid-js@1.8.20)':
+    dependencies:
+      '@felte/core': 1.4.3
+      solid-js: 1.8.20
+
+  '@felte/validator-zod@1.0.17(zod@3.23.8)':
+    dependencies:
+      '@felte/common': 1.1.8
+      zod: 3.23.8
 
   '@floating-ui/core@1.6.7':
     dependencies:
@@ -2432,6 +2480,8 @@ snapshots:
   yallist@3.1.1: {}
 
   yaml@2.5.0: {}
+
+  zod@3.23.8: {}
 
   zustand@4.5.4(react@18.3.1):
     dependencies:

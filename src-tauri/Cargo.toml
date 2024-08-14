@@ -2,7 +2,7 @@
 name = "iex-tauri-frontend"
 version = "0.0.0"
 description = "A Tauri App"
-authors = ["you"]
+authors = ["Prashant Rahul <prashantrahul141@protonmail.com>"]
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html

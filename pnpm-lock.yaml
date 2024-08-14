@@ -23,12 +23,18 @@ importers:
       solid-js:
         specifier: ^1.7.8
         version: 1.8.20
+      solid-zustand:
+        specifier: ^1.8.1
+        version: 1.8.1(solid-js@1.8.20)(zustand@4.5.4(react@18.3.1))
       tailwind-merge:
         specifier: ^2.5.2
         version: 2.5.2
       tailwindcss-animate:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@3.4.9)
+      zustand:
+        specifier: ^4.5.4
+        version: 4.5.4(react@18.3.1)
     devDependencies:
       '@biomejs/biome':
         specifier: 1.8.3
@@ -920,6 +926,10 @@ packages:
   lines-and-columns@1.2.4:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
 
+  loose-envify@1.4.0:
+    resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}
+    hasBin: true
+
   lru-cache@10.4.3:
     resolution: {integrity: sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==}
 
@@ -1049,6 +1059,10 @@ packages:
   queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
 
+  react@18.3.1:
+    resolution: {integrity: sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==}
+    engines: {node: '>=0.10.0'}
+
   read-cache@1.0.0:
     resolution: {integrity: sha512-Owdv/Ft7IjOgm/i0xvNDZ1LrRANRfew4b2prF3OWMQLxLfu3bS8FVhCsrSCMK4lR56Y9ya+AThoTpDCTxCmpRA==}
 
@@ -1115,6 +1129,12 @@ packages:
     resolution: {integrity: sha512-F3aPsX6hVw9ttm5LYlth8Q15x6MlI/J3Dn+o3EQyRTtTxidepSTwAYdozt01/YA+7ObcciagGEyXIopGZzQtbA==}
     peerDependencies:
       solid-js: ^1.3
+
+  solid-zustand@1.8.1:
+    resolution: {integrity: sha512-E4epEMdzb39oeu4olSdbAxhvGy95MP9T6AILfDda5YYDP3kBqXrl10g0r/Gyyi3421nl/lAAk5Bml7C8IIZC6Q==}
+    peerDependencies:
+      solid-js: ^1.6.0
+      zustand: ^4.4.0
 
   source-map-js@1.2.0:
     resolution: {integrity: sha512-itJW8lvSA0TXEphiRoawsCksnlf8SyvmFzIhltqAHluXd88pkCd+cXJVHTDwdCr0IzwptSm035IHQktUu1QUMg==}
@@ -1197,6 +1217,11 @@ packages:
     peerDependencies:
       browserslist: '>= 4.21.0'
 
+  use-sync-external-store@1.2.0:
+    resolution: {integrity: sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
 
@@ -1272,6 +1297,21 @@ packages:
     resolution: {integrity: sha512-2wWLbGbYDiSqqIKoPjar3MPgB94ErzCtrNE1FdqGuaO0pi2JGjmE8aW8TDZwzU7vuxcGRdL/4gPQwQ7hD5AMSw==}
     engines: {node: '>= 14'}
     hasBin: true
+
+  zustand@4.5.4:
+    resolution: {integrity: sha512-/BPMyLKJPtFEvVL0E9E9BTUM63MNyhPGlvxk1XjrfWTUlV+BR8jufjsovHzrtR6YNcBEcL7cMHovL1n9xHawEg==}
+    engines: {node: '>=12.7.0'}
+    peerDependencies:
+      '@types/react': '>=16.8'
+      immer: '>=9.0.6'
+      react: '>=16.8'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      immer:
+        optional: true
+      react:
+        optional: true
 
 snapshots:
 
@@ -2043,6 +2083,10 @@ snapshots:
 
   lines-and-columns@1.2.4: {}
 
+  loose-envify@1.4.0:
+    dependencies:
+      js-tokens: 4.0.0
+
   lru-cache@10.4.3: {}
 
   lru-cache@5.1.1:
@@ -2144,6 +2188,10 @@ snapshots:
 
   queue-microtask@1.2.3: {}
 
+  react@18.3.1:
+    dependencies:
+      loose-envify: 1.4.0
+
   read-cache@1.0.0:
     dependencies:
       pify: 2.3.0
@@ -2226,6 +2274,11 @@ snapshots:
       solid-js: 1.8.20
     transitivePeerDependencies:
       - supports-color
+
+  solid-zustand@1.8.1(solid-js@1.8.20)(zustand@4.5.4(react@18.3.1)):
+    dependencies:
+      solid-js: 1.8.20
+      zustand: 4.5.4(react@18.3.1)
 
   source-map-js@1.2.0: {}
 
@@ -2326,6 +2379,10 @@ snapshots:
       escalade: 3.1.2
       picocolors: 1.0.1
 
+  use-sync-external-store@1.2.0(react@18.3.1):
+    dependencies:
+      react: 18.3.1
+
   util-deprecate@1.0.2: {}
 
   validate-html-nesting@1.2.2: {}
@@ -2375,3 +2432,9 @@ snapshots:
   yallist@3.1.1: {}
 
   yaml@2.5.0: {}
+
+  zustand@4.5.4(react@18.3.1):
+    dependencies:
+      use-sync-external-store: 1.2.0(react@18.3.1)
+    optionalDependencies:
+      react: 18.3.1

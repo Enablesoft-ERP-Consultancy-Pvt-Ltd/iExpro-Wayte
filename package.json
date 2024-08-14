@@ -15,6 +15,7 @@
     "@felte/solid": "^1.2.13",
     "@felte/validator-zod": "^1.0.17",
     "@kobalte/core": "^0.13.4",
+    "@solidjs/router": "^0.14.2",
     "@tauri-apps/api": "^1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",

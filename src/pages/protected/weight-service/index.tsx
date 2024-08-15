@@ -1,5 +1,13 @@
+import WeightServiceForm from "~/components/composables/forms/weight-service/weight-service";
+
 const WeightServicePage = () => {
-  return <div>weight service page.</div>;
+  return (
+    <>
+      <div>
+        <WeightServiceForm />
+      </div>
+    </>
+  );
 };
 
 export default WeightServicePage;

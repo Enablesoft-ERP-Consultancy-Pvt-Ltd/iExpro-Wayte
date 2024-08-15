@@ -15,8 +15,8 @@ const navbarOptions: TNavBarOption[] = [
 
 const Navbar = () => {
   return (
-    <nav class="flex flex-col h-screen border py-4 bg-background">
-      <ul class="flex flex-col gap-2 flex-grow">
+    <nav class="flex flex-col h-screen max-h-screen border py-4 bg-background">
+      <ul class="flex flex-col gap-2 flex-grow overflow-auto">
         <For each={navbarOptions} fallback={<div>Loading...</div>}>
           {(option) => <NavBarButton option={option} />}
         </For>

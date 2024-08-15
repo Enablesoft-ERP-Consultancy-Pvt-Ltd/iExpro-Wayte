@@ -1,5 +1,5 @@
 import type { Component } from "solid-js";
-import type { TNavBarOption } from "~/lib/types";
+import type { TProtectedRoutePage } from "~/lib/types";
 import {
   Tooltip,
   TooltipContent,
@@ -9,7 +9,9 @@ import { A, useLocation } from "@solidjs/router";
 import { Button } from "~/components/ui/button";
 import { equalUrls } from "~/lib/utils";
 
-const NavBarButton: Component<{ option: TNavBarOption }> = ({ option }) => {
+const NavBarButton: Component<{ option: TProtectedRoutePage }> = ({
+  option,
+}) => {
   const location = useLocation();
   return (
     <Tooltip>

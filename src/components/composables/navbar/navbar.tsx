@@ -2,7 +2,7 @@ import { For } from "solid-js";
 import type { TNavBarOption } from "~/lib/types";
 import NavBarButton from "./navbar-button";
 import { FaSolidWeightScale } from "solid-icons/fa";
-import { IoSettingsSharp } from 'solid-icons/io'
+import { IoSettingsSharp } from "solid-icons/io";
 
 const navbarOptions: TNavBarOption[] = [
   {
@@ -22,7 +22,14 @@ const Navbar = () => {
         </For>
       </ul>
 
-      <NavBarButton option={{ title: "Settings", tooltip: "App settings", url: "/protected/settings", icon: IoSettingsSharp }} />
+      <NavBarButton
+        option={{
+          title: "Settings",
+          tooltip: "App settings",
+          url: "/protected/settings",
+          icon: IoSettingsSharp,
+        }}
+      />
     </nav>
   );
 };

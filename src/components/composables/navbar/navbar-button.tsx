@@ -1,11 +1,11 @@
-import { type Component } from "solid-js";
+import type { Component } from "solid-js";
 import type { TNavBarOption } from "~/lib/types";
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from "~/components/ui/tooltip";
-import { A, useLocation, } from "@solidjs/router";
+import { A, useLocation } from "@solidjs/router";
 import { Button } from "~/components/ui/button";
 import { equalUrls } from "~/lib/utils";
 
@@ -15,8 +15,13 @@ const NavBarButton: Component<{ option: TNavBarOption }> = ({ option }) => {
     <Tooltip>
       <TooltipTrigger>
         <A href={option.url}>
-          <Button class="rounded-full size-12 mx-2" variant={equalUrls(location.pathname, option.url) ? "default" : "secondary"}>
-            {<option.icon size={18} />}{ }
+          <Button
+            class="rounded-full size-12 mx-2"
+            variant={
+              equalUrls(location.pathname, option.url) ? "default" : "secondary"
+            }
+          >
+            {<option.icon size={18} />}
           </Button>
         </A>
       </TooltipTrigger>

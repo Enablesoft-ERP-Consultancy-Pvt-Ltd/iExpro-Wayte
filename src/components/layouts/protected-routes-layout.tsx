@@ -13,7 +13,7 @@ const ProtectedRoutesLayout: Component<RouteSectionProps> = (props) => {
         <Navbar />
       </aside>
       <main class="w-full">
-        <div class="sticky top-0 bg-background w-full border px-4 py-5">
+        <div class="sticky top-0 bg-background w-full border p-4">
           <h1 class="text-xl font-semibold">{currentRoute().title}</h1>
         </div>
         {props.children}

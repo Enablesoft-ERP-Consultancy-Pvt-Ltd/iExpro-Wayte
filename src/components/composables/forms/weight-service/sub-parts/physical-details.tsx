@@ -45,7 +45,7 @@ const WeightServicePhysicalDetails: Component<{
       {/* bell weight */}
       <div>
         <Label for="bell_weight">Bell weight</Label>
-        <TextField name="belll_weight">
+        <TextField name="bell_weight">
           <TextFieldInput type="text" placeholder="Bell weight" />
         </TextField>
       </div>

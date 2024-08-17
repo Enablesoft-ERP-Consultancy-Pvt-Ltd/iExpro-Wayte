@@ -9,10 +9,10 @@ const ProtectedRoutesLayout: Component<RouteSectionProps> = (props) => {
 
   return (
     <div class="flex relative">
-      <aside class="sticky top-0 border max-h-screen">
+      <aside class="fixed z-30 top-0 left-0 max-h-screen border">
         <Navbar />
       </aside>
-      <main class="w-full">
+      <main class="w-full pl-16">
         <div class="sticky top-0 bg-background w-full border p-4 z-20">
           <h1 class="text-xl font-semibold">{currentRoute().title}</h1>
         </div>

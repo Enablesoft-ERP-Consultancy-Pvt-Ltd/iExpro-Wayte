@@ -8,6 +8,17 @@ use std::{
 };
 use tauri::{Manager, Window};
 
+#[tauri::command]
+pub fn get_ports() -> Result<Vec<String>, String> {
+    let ports = serialport::available_ports();
+    match ports {
+        Ok(ports) => {
+            let p_names: Vec<String> = ports.iter().map(|p| p.port_name.to_owned()).collect();
+            return Ok(p_names);
+        }
+        Err(e) => return Err(e.description),
+    };
+}
 
 #[tauri::command]
 pub fn emit_weight_on_port(window: Window, port: &str, baud_rate: u32) -> Result<(), String> {

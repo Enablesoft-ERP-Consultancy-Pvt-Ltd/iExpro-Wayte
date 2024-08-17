@@ -23,3 +23,7 @@ export function getCurrentProtectedRouteFromUrl(url: string) {
 
   return allProtectedRoutePages["weight-service"];
 }
+
+export function isBrowser() {
+  return window && !window.__TAURI_IPC__;
+}

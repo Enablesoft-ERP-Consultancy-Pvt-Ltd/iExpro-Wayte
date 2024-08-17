@@ -14,7 +14,7 @@ const NavBarButton: Component<{ option: TProtectedRoutePage }> = ({
 }) => {
   const location = useLocation();
   return (
-    <Tooltip>
+    <Tooltip openDelay={0}>
       <TooltipTrigger>
         <A href={option.url}>
           <Button

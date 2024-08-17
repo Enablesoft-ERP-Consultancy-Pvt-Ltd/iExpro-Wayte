@@ -30,7 +30,7 @@ const WeightServiceForm = () => {
       });
 
     const unlisten = await listen("weight-read", (event) => {
-      const w = (event.payload as string).trim().split("\n")[0] ?? "";
+      const w = event.payload as string;
       console.log("recv: ", w);
       setFields("bell_weight", w, true);
     });

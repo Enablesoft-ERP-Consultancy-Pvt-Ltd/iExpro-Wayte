@@ -39,7 +39,7 @@ fn emit_weight_on_port(window: Window, port: &str, baud_rate: u32) -> Result<(),
         match read_result {
             Ok(_) => {
                 let s = match str::from_utf8(&serial_buf) {
-                    Ok(s) => s.to_string(),
+                    Ok(s) => s.trim_end_matches('\0').trim_end_matches('\n').to_string(),
                     Err(e) => {
                         println!("failed to convert to string: {}", e);
                         "".to_string()

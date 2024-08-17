@@ -3,11 +3,31 @@ import { createForm } from "@felte/solid";
 import { Label } from "~/components/ui/label";
 import { Button } from "~/components/ui/button";
 import useAppSettingsStore from "~/components/state/stores/app-settings";
+import { createSignal, onMount } from "solid-js";
+import { invoke } from "@tauri-apps/api/tauri";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "~/components/ui/select";
 
 const SettingsPage = () => {
   const appSettings = useAppSettingsStore();
+  const [ports, setPorts] = createSignal<string[]>([]);
 
-  const { form, setFields } = createForm({
+  onMount(() => {
+    invoke("get_ports")
+      .then((ports) => {
+        setPorts(ports as string[]);
+      })
+      .catch(() => {
+        console.log("Failed to get ports");
+      });
+  });
+
+  const { form, setFields, data } = createForm({
     onSubmit: (values) => {
       appSettings().setValues(values);
     },
@@ -22,7 +42,7 @@ const SettingsPage = () => {
   });
 
   return (
-    <form class="m-6 w-full max-w-5xl" ref={form}>
+    <form class="p-6 w-full max-w-5xl space-y-4" ref={form}>
       {/* weight service settings */}
       <div class="w-full">
         {/* weight service settings title */}
@@ -30,8 +50,34 @@ const SettingsPage = () => {
           <p class="text-nowrap font-semibold text-primary/80">
             Weight Service
           </p>
-
           <div class="border border-border w-full" />
+        </div>
+
+        {/* ports */}
+        <div class="flex items-center gap-4 w-full p-2 px-5">
+          <div class="flex items-center w-full">
+            <Label class="flex-grow" for="weight_service_settings.port">
+              Port
+            </Label>
+            <Select
+              value={data((d) => d.weight_service_settings.port)}
+              onChange={(v) => {
+                setFields("weight_service_settings.port", v, true);
+              }}
+              options={ports()}
+              placeholder="port"
+              itemComponent={(props) => (
+                <SelectItem item={props.item}>{props.item.rawValue}</SelectItem>
+              )}
+            >
+              <SelectTrigger aria-label="Port" class="w-[180px]">
+                <SelectValue<string>>
+                  {(state) => state.selectedOption()}
+                </SelectValue>
+              </SelectTrigger>
+              <SelectContent />
+            </Select>
+          </div>
         </div>
       </div>
 

@@ -2,11 +2,12 @@ import { createWithSignal } from "solid-zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 
 interface AppSettingsStore {
-  weight_service_settings: {
-    port: string;
-  };
   appearance: {
     dark_theme: boolean;
+  };
+  weight_service_settings: {
+    port: string;
+    baud_rate: number;
   };
 
   setValues: (values: Record<never, never>) => void;
@@ -21,6 +22,7 @@ const useAppSettingsStore = createWithSignal<AppSettingsStore>(
       },
       weight_service_settings: {
         port: "COM1",
+        baud_rate: 9600,
       },
       setValues: (values) => {
         set((s) => ({ ...s, ...values }));

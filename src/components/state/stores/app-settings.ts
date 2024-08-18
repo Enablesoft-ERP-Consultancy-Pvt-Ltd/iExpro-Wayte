@@ -14,7 +14,7 @@ interface AppSettingsStore {
 }
 
 const useAppSettingsStore = createWithSignal<AppSettingsStore>(
-  // @ts-ignore
+  // @ts-ignore: i know what i am doing.
   persist(
     (set) => ({
       appearance: {

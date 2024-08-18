@@ -54,7 +54,7 @@ const SettingsPage = () => {
         <div class="w-full">
           {/* weight service settings title */}
           <div class="flex gap-2 items-center">
-            <p class="text-nowrap font-semibold text-primary/80">
+            <p class="text-nowrap whitespace-nowrap font-semibold text-primary/80">
               Weight Service
             </p>
             <div class="border border-border w-full" />

@@ -8,8 +8,10 @@ import WeightServiceFormItemDetails from "./sub-parts/item-details";
 import WeightServicePhysicalDetails from "./sub-parts/physical-details";
 import WeightServiceFormRemarkDetails from "./sub-parts/remark-details";
 import { Button } from "~/components/ui/button";
+import useAppSettingsStore from "~/components/state/stores/app-settings";
 
 const WeightServiceForm = () => {
+  const appSettings = useAppSettingsStore();
   const { form, setFields } = createForm({
     onSubmit: (v) => {
       console.log(v);
@@ -21,7 +23,10 @@ const WeightServiceForm = () => {
     if (isBrowser()) {
       return;
     }
-    invoke("emit_weight_on_port", { port: "/dev/pts/3", baudRate: 9600 })
+    invoke("emit_weight_on_port", {
+      port: appSettings().weight_service_settings.port,
+      baudRate: appSettings().weight_service_settings.baud_rate,
+    })
       .then(() => {
         console.log("hooked to weight machine.");
       })

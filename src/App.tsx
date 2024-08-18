@@ -6,10 +6,12 @@ import ProtectedRoutesLayout from "~/components/layouts/protected-routes-layout"
 import WeightServicePage from "~/pages/protected/weight-service";
 import SettingsPage from "~/pages/protected/settings";
 import ThemeProvider from "./components/state/providers/theme-provider";
+import { Toaster } from "~/components/ui/toast";
 
 function App() {
   return (
     <ThemeProvider>
+      <Toaster />
       <Router>
         <Route path={"/"} component={HomeLoginPage} />
         <Route path={"/protected"} component={ProtectedRoutesLayout}>

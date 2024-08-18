@@ -9,6 +9,7 @@ import WeightServicePhysicalDetails from "./sub-parts/physical-details";
 import WeightServiceFormRemarkDetails from "./sub-parts/remark-details";
 import { Button } from "~/components/ui/button";
 import useAppSettingsStore from "~/components/state/stores/app-settings";
+import { showToast } from "~/components/ui/toast";
 
 const WeightServiceForm = () => {
   const appSettings = useAppSettingsStore();
@@ -32,6 +33,11 @@ const WeightServiceForm = () => {
       })
       .catch((e) => {
         console.error(e);
+        showToast({
+          title: "Failed to connect",
+          description: "Failed to connect to the weighing machine.",
+          variant: "error",
+        });
       });
 
     const unlisten = await listen("weight-read", (event) => {

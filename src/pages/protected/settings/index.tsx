@@ -18,6 +18,7 @@ import {
   NumberFieldIncrementTrigger,
   NumberFieldInput,
 } from "~/components/ui/number-field";
+import { showToast } from "~/components/ui/toast";
 
 const SettingsPage = () => {
   const appSettings = useAppSettingsStore();
@@ -36,6 +37,12 @@ const SettingsPage = () => {
   const { form, setFields, data } = createForm({
     onSubmit: (values) => {
       appSettings().setValues(values);
+      showToast({
+        title: "Settings updated",
+        description: "Your changes has been saved.",
+        variant: "success",
+        duration: 2000,
+      });
     },
     initialValues: {
       weight_service_settings: {

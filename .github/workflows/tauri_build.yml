@@ -28,7 +28,8 @@ jobs:
         if: matrix.platform == 'ubuntu-22.04' # This must match the platform value defined above.
         run: |
           sudo apt-get update
-          sudo apt-get install -y libwebkit2gtk-4.0-dev libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
+          sudo apt-get install -y libwebkit2gtk-4.0-dev libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf pkg-config libusb-1.0-0-dev libftdi1-dev libudev-dev
+          export PKG_CONFIG_PATH=/usr/lib/pkgconfig
 
       - name: setup pnpm
         uses: pnpm/action-setup@v4

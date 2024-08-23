@@ -68,7 +68,7 @@ jobs:
         if: matrix.platform == 'ubuntu-22.04'
         with:
           name: linux-x86_64
-          path: src-tauri/target/release/bundle/deb/
+          path: src-tauri/target/release/bundle/appimage/
 
       - uses: actions/upload-artifact@v4
         if: matrix.platform == 'windows-latest'

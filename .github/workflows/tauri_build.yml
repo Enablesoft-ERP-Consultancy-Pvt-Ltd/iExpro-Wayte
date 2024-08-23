@@ -3,6 +3,10 @@ name: "Build and release"
 on:
   workflow_dispatch:
 
+env:
+  TAURI_KEY_PASSWORD: ${{ secrets.TAURI_KEY_PASSWORD }}
+  TAURI_PRIVATE_KEY: ${{ secrets.TAURI_PRIVATE_KEY }}
+
 jobs:
   publish-tauri:
     permissions:
@@ -52,8 +56,6 @@ jobs:
       - uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TAURI_KEY_PASSWORD: ${{ secrets.TAURI_KEY_PASSWORD }}
-          TAURI_PRIVATE_KEY: ${{ secrets.TAURI_PRIVATE_KEY }}
         with:
           tagName: app-v__VERSION__
           releaseName: "App v__VERSION__"
@@ -65,11 +67,13 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: matrix.platform == 'ubuntu-22.04'
         with:
-          name: iexpro_wayte_x64.deb
+          name: linux-x86_64
           path: src-tauri/target/release/bundle/deb/
 
       - uses: actions/upload-artifact@v4
         if: matrix.platform == 'windows-latest'
         with:
-          name: iexpro_wayte_x64.msi
-          path: src-tauri/target/release/bundle/msi/
+          name: windows-x86_64
+          path: |
+            src-tauri/target/release/bundle/msi/
+            src-tauri/target/release/bundle/nsis/

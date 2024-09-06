@@ -27,3 +27,12 @@ export function getCurrentProtectedRouteFromUrl(url: string) {
 export function isBrowser() {
   return window && !window.__TAURI_IPC__;
 }
+
+export function parseFloatFromRawWeight(weight: string) {
+  if (weight.length <= 0) {
+    return 0.0;
+  }
+
+  const result = /\d+\.?\d?/gm.exec(weight);
+  return result ? Number(result[0]) : 0.0;
+}

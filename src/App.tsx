@@ -7,20 +7,25 @@ import WeightServicePage from "~/pages/protected/weight-service";
 import SettingsPage from "~/pages/protected/settings";
 import ThemeProvider from "./components/state/providers/theme-provider";
 import { Toaster } from "~/components/ui/toast";
+import { QueryClient, QueryClientProvider } from "@tanstack/solid-query";
+
+const client = new QueryClient()
 
 function App() {
   return (
-    <ThemeProvider>
-      <Toaster />
-      <Router>
-        <Route path={"/"} component={HomeLoginPage} />
-        <Route path={"/protected"} component={ProtectedRoutesLayout}>
-          <Route path={"/weight-service"} component={WeightServicePage} />
-          <Route path={"/settings"} component={SettingsPage} />
-        </Route>
-        <Route path={"*404"} component={FourZeroFourPage} />
-      </Router>
-    </ThemeProvider>
+    <QueryClientProvider client={client}>
+      <ThemeProvider>
+        <Toaster />
+        <Router>
+          <Route path={"/"} component={HomeLoginPage} />
+          <Route path={"/protected"} component={ProtectedRoutesLayout}>
+            <Route path={"/weight-service"} component={WeightServicePage} />
+            <Route path={"/settings"} component={SettingsPage} />
+          </Route>
+          <Route path={"*404"} component={FourZeroFourPage} />
+        </Router>
+      </ThemeProvider>
+    </QueryClientProvider>
   );
 }
 

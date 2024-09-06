@@ -19,10 +19,18 @@ import {
   NumberFieldInput,
 } from "~/components/ui/number-field";
 import { showToast } from "~/components/ui/toast";
+import { message } from "@tauri-apps/api/dialog";
+import { version } from "~/../package.json";
 
 const SettingsPage = () => {
   const appSettings = useAppSettingsStore();
   const [ports, setPorts] = createSignal<string[]>([]);
+  const [metaInfo, setMetaInfo] = createSignal<string>(
+    `version : ${version}\n`
+  );
+  const showAboutDialog = async () => {
+    await message(metaInfo(), { title: "About", type: "info" });
+  };
 
   onMount(() => {
     invoke("get_ports")
@@ -31,6 +39,18 @@ const SettingsPage = () => {
       })
       .catch(() => {
         console.log("Failed to get ports");
+      });
+
+    invoke("get_meta_info")
+      .then((meta_info) => {
+        const meta = Object.entries(meta_info as Record<string, string>).reduce(
+          (acc, curr) => `${acc}${curr[0]} : ${curr[1]}\n`,
+          ""
+        );
+        setMetaInfo((prev) => `${prev}${meta}`);
+      })
+      .catch((err) => {
+        console.error("Failed to get meta info.", err);
       });
   });
 
@@ -55,7 +75,7 @@ const SettingsPage = () => {
   });
 
   return (
-    <div class="w-full flex items-center justify-center">
+    <div class="w-full flex flex-col items-center justify-center">
       <form class="p-6 w-full max-w-5xl space-y-4" ref={form}>
         {/* weight service settings */}
         <div class="w-full">
@@ -150,6 +170,13 @@ const SettingsPage = () => {
           <Button type="submit">Save</Button>
         </div>
       </form>
+
+      {/* show meta info */}
+      <div class="">
+        <Button type="button" variant="link" onClick={showAboutDialog}>
+          About
+        </Button>
+      </div>
     </div>
   );
 };

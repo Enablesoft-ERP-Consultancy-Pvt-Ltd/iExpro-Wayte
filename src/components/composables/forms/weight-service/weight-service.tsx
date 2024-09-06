@@ -3,17 +3,24 @@ import WeightServiceFormBasicDetails from "./sub-parts/basic-details";
 import { createSignal, onCleanup, onMount } from "solid-js";
 import { invoke } from "@tauri-apps/api";
 import { listen, emit, type UnlistenFn } from "@tauri-apps/api/event";
-import { isBrowser } from "~/lib/utils";
+import { isBrowser, parseFloatFromRawWeight } from "~/lib/utils";
 import WeightServiceFormItemDetails from "./sub-parts/item-details";
 import WeightServicePhysicalDetails from "./sub-parts/physical-details";
 import WeightServiceFormRemarkDetails from "./sub-parts/remark-details";
 import { Button } from "~/components/ui/button";
 import useAppSettingsStore from "~/components/state/stores/app-settings";
 import { showToast } from "~/components/ui/toast";
+import { validator } from "@felte/validator-zod";
+import { ZPurchaseReceiveDetailSchema } from "~/lib/schemas";
+import type { z } from "zod";
 
 const WeightServiceForm = () => {
   const appSettings = useAppSettingsStore();
-  const { form, setFields } = createForm({
+  const { form, setFields } = createForm<
+    z.infer<typeof ZPurchaseReceiveDetailSchema>
+  >({
+    // @ts-ignore: weird issue.
+    extend: validator({ ZPurchaseReceiveDetailSchema }),
     onSubmit: (v) => {
       console.log(v);
     },
@@ -37,13 +44,13 @@ const WeightServiceForm = () => {
           title: "Failed to connect",
           description: "Failed to connect to the weighing machine.",
           variant: "error",
+          duration: 2000,
         });
       });
 
     const unlisten = await listen("weight-read", (event) => {
       const w = event.payload as string;
-      console.log("recv: ", w);
-      setFields("bell_weight", w, true);
+      setFields("BellWeight", parseFloatFromRawWeight(w), true);
     });
     setUnlisten(() => unlisten);
   });

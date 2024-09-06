@@ -11,6 +11,9 @@
   },
   "tauri": {
     "allowlist": {
+      "dialog": {
+        "message": true
+      },
       "http": {
         "all": true,
         "request": true,
@@ -46,12 +49,7 @@
     },
     "bundle": {
       "active": true,
-      "targets": [
-        "appimage",
-        "msi",
-        "nsis",
-        "updater"
-      ],
+      "targets": ["appimage", "msi", "nsis", "updater"],
       "identifier": "com.iexpro.wayte",
       "icon": [
         "icons/32x32.png",

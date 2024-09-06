@@ -20,6 +20,9 @@ importers:
       '@solidjs/router':
         specifier: ^0.14.2
         version: 0.14.2(solid-js@1.8.20)
+      '@tanstack/solid-query':
+        specifier: ^5.54.2
+        version: 5.54.2(solid-js@1.8.20)
       '@tauri-apps/api':
         specifier: ^1
         version: 1.6.0
@@ -595,6 +598,14 @@ packages:
 
   '@swc/helpers@0.5.12':
     resolution: {integrity: sha512-KMZNXiGibsW9kvZAO1Pam2JPTDBm+KSHMMHWdsyI/1DbIZjT2A6Gy3hblVXUMEDvUAKq+e0vL0X0o54owWji7g==}
+
+  '@tanstack/query-core@5.54.1':
+    resolution: {integrity: sha512-hKS+WRpT5zBFip21pB6Jx1C0hranWQrbv5EJ7qPoiV5MYI3C8rTCqWC9DdBseiPT1JgQWh8Y55YthuYZNiw3Xw==}
+
+  '@tanstack/solid-query@5.54.2':
+    resolution: {integrity: sha512-69z83kCrVu5EsTG4xCOQz+FQvLjrN5KFJgsC/4Adho2UAJ9vXNKLBT3QmgAEzXgwYMose62SWVyVsu8lz+mGOg==}
+    peerDependencies:
+      solid-js: ^1.6.0
 
   '@tauri-apps/api@1.6.0':
     resolution: {integrity: sha512-rqI++FWClU5I2UBp4HXFvl+sBWkdigBkxnpJDQUWttNyG7IZP4FwQGhTNL5EOw0vI8i6eSAJ5frLqO7n7jbJdg==}
@@ -1811,6 +1822,13 @@ snapshots:
   '@swc/helpers@0.5.12':
     dependencies:
       tslib: 2.6.3
+
+  '@tanstack/query-core@5.54.1': {}
+
+  '@tanstack/solid-query@5.54.2(solid-js@1.8.20)':
+    dependencies:
+      '@tanstack/query-core': 5.54.1
+      solid-js: 1.8.20
 
   '@tauri-apps/api@1.6.0': {}
 

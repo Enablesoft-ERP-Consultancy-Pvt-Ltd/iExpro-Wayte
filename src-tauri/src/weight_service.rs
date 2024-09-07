@@ -40,6 +40,7 @@ pub fn emit_weight_on_port(window: Window, port: &str, baud_rate: u32) -> Result
         };
     });
 
+    let mut previous_read = "".to_string();
     thread::spawn(move || loop {
         let mut serial_buf: Vec<u8> = vec![0; 32];
         let read_result = con.read(serial_buf.as_mut_slice());
@@ -53,7 +54,10 @@ pub fn emit_weight_on_port(window: Window, port: &str, baud_rate: u32) -> Result
                         "".to_string()
                     }
                 };
-                let _ = window.emit_all("weight-read", s);
+                if previous_read != s {
+                    let _ = window.emit_all("weight-read", s.clone());
+                    previous_read = s;
+                }
             }
             Err(e) => {
                 if e.kind() != ErrorKind::TimedOut {
@@ -72,7 +76,7 @@ pub fn emit_weight_on_port(window: Window, port: &str, baud_rate: u32) -> Result
             Err(e) => println!("Failed to get lock in emiting thread. : {}", e),
         };
 
-        thread::sleep(Duration::from_millis(300));
+        thread::sleep(Duration::from_millis(490));
     });
 
     Ok(())

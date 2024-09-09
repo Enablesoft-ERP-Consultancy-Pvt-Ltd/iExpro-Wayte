@@ -24,7 +24,7 @@ export const ZPurchaseReceiveDetailSchema = z.object({
   BellWeight: z.number().nullable(),
   StateGoodAndServiceTax: z.number().nullable(),
   IntegratedGoodsAndServicesTax: z.number().nullable(),
-  BinNo: z.string().max(50).nullable(),
+  BinNumber: z.string().max(50).nullable(),
   VendorLotNumber: z.string().max(50).nullable(),
   PenalityRemarks: z.string().max(250).nullable(),
   OldLotNoWise: z.number().nullable(),

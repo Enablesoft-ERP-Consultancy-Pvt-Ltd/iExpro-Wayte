@@ -19,8 +19,7 @@ const WeightServiceForm = () => {
   const { form, setFields } = createForm<
     z.infer<typeof ZPurchaseReceiveDetailSchema>
   >({
-    // @ts-ignore: weird issue.
-    extend: validator({ ZPurchaseReceiveDetailSchema }),
+    extend: validator({ schema: ZPurchaseReceiveDetailSchema }),
     onSubmit: (v) => {
       console.log(v);
     },

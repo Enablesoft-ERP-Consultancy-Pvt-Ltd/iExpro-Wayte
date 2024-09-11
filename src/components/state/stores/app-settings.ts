@@ -9,6 +9,9 @@ interface AppSettingsStore {
     port: string;
     baud_rate: number;
   };
+  build_time: {
+    backend_base_url: string;
+  };
 
   setValues: (values: Record<never, never>) => void;
 }
@@ -23,6 +26,9 @@ const useAppSettingsStore = createWithSignal<AppSettingsStore>(
       weight_service_settings: {
         port: "COM1",
         baud_rate: 9600,
+      },
+      build_time: {
+        backend_base_url: import.meta.env.VITE_BACKEND_BASE_URL,
       },
       setValues: (values) => {
         set((s) => ({ ...s, ...values }));

@@ -96,7 +96,7 @@ const SettingsPage = () => {
               <Select
                 value={data((d) => d.weight_service_settings.port)}
                 onChange={(v) => {
-                  setFields("weight_service_settings.port", v, true);
+                  setFields("weight_service_settings.port", v || "COM1", true);
                 }}
                 options={ports()}
                 placeholder="port"

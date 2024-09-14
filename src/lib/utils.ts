@@ -34,5 +34,5 @@ export function parseFloatFromRawWeight(weight: string) {
   }
 
   const result = /\d+\.?\d?/gm.exec(weight);
-  return result ? Number(result[0]) : 0.0;
+  return result ? Number(Number(result[0]).toFixed(3)) : 0.0;
 }

@@ -73,24 +73,31 @@ const WeightServiceForm = () => {
     // z.infer<typeof ZWeightFormSchema>
     {
       // extend: validator({ schema: ZWeightFormSchema }),
-      onSubmit: async (v) => {
+      onSubmit: async (v, c) => {
         try {
-          console.log(v);
+          const body = Body.json({
+            v,
+            rate: 0,
+            bellweight: parseFloatFromRawWeight(v.bell_weight),
+            balenumber: v.bale_number,
+          });
           const res = await fetch(
             `${import.meta.env.VITE_BACKEND_BASE_URL}/record/create`,
             {
               method: "POST",
               timeout: 30,
-              body: Body.json(v),
+              body,
             }
           );
           console.log(res);
+          c.reset();
         } catch (e) {
           console.error(e);
         }
       },
     }
   );
+
   const [unlisten, setUnlisten] = createSignal<UnlistenFn | null>(null);
 
   onMount(async () => {
@@ -279,7 +286,7 @@ const WeightServiceForm = () => {
           <Label for="item_category">Category</Label>
           <Combobox
             name="item_category"
-            onChange={(e) => setFields("BaleNumber", e, true)}
+            onChange={(e) => setFields("item_category", e, true)}
             options={PLACEHOLDER_CATEGORY}
             placeholder="Company"
             itemComponent={(props) => (

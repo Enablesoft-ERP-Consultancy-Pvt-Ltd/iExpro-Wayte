@@ -76,10 +76,18 @@ const WeightServiceForm = () => {
       onSubmit: async (v, c) => {
         try {
           const body = Body.json({
-            v,
-            rate: 0,
+            ...v,
+            rate: v.rate,
             bellweight: parseFloatFromRawWeight(v.bell_weight),
             balenumber: v.bale_number,
+            quantityreturn: v.return_quantity,
+            netamount: v.amount,
+            remark: v.item_remark,
+            penalty: v.penalty,
+            stategoodandservicetax: v.sgst_percentage,
+            integratedgoodsandservicestax: v.igst_percentage,
+            binnumber: v.bin_number,
+            vendorlotnumber: v.VendorLotNumber,
           });
           const res = await fetch(
             `${import.meta.env.VITE_BACKEND_BASE_URL}/record/create`,
@@ -176,9 +184,9 @@ const WeightServiceForm = () => {
         </div>
         {/* Vendor name */}
         <div>
-          <Label for="vendor_name">Vendor name</Label>
+          <Label for="VendorLotNumber">Vendor name</Label>
           <Combobox
-            name="vendor_name"
+            name="VendorLotNumber"
             onChange={(e) => setFields("VendorLotNumber", e, true)}
             options={PLACEHOLDER_VENDOR}
             placeholder="Vendor"

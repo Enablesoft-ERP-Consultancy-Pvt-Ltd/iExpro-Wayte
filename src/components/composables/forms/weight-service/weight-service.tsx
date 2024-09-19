@@ -75,20 +75,31 @@ const WeightServiceForm = () => {
       // extend: validator({ schema: ZWeightFormSchema }),
       onSubmit: async (v, c) => {
         try {
+          const new_v: Record<string, unknown> = {};
+
+          for (const l of Object.entries(v)) {
+            if (typeof l[1] === "string" && l[1].trim().length === 0) {
+              new_v[l[0]] = null;
+              continue;
+            }
+            new_v[l[0]] = l[1];
+          }
+
           const body = Body.json({
-            ...v,
-            rate: v.rate,
-            bellweight: parseFloatFromRawWeight(v.bell_weight),
-            balenumber: v.bale_number,
-            quantityreturn: v.return_quantity,
-            netamount: v.amount,
-            remark: v.item_remark,
-            penalty: v.penalty,
-            stategoodandservicetax: v.sgst_percentage,
-            integratedgoodsandservicestax: v.igst_percentage,
-            binnumber: v.bin_number,
-            vendorlotnumber: v.VendorLotNumber,
+            ...new_v,
+            rate: new_v.rate,
+            bellweight: parseFloatFromRawWeight(new_v.bell_weight as string),
+            balenumber: new_v.bale_number,
+            quantityreturn: new_v.return_quantity,
+            netamount: new_v.amount,
+            remark: new_v.item_remark,
+            penalty: new_v.penalty,
+            stategoodandservicetax: new_v.sgst_percentage,
+            integratedgoodsandservicestax: new_v.igst_percentage,
+            binnumber: new_v.bin_number,
+            vendorlotnumber: new_v.VendorLotNumber,
           });
+          console.log(body);
           const res = await fetch(
             `${import.meta.env.VITE_BACKEND_BASE_URL}/record/create`,
             {
@@ -99,8 +110,20 @@ const WeightServiceForm = () => {
           );
           console.log(res);
           c.reset();
+          showToast({
+            title: "Added",
+            description: "Successfully added new record in the database.",
+            variant: "success",
+            duration: 1500,
+          });
         } catch (e) {
           console.error(e);
+          showToast({
+            title: "Failed",
+            description: `Failed due to: ${e}`,
+            variant: "error",
+            duration: 3000,
+          });
         }
       },
     }

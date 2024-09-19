@@ -28,7 +28,11 @@ export function isBrowser() {
   return window && !window.__TAURI_IPC__;
 }
 
-export function parseFloatFromRawWeight(weight: string) {
+export function parseFloatFromRawWeight(weight: unknown) {
+  if (typeof weight !== "string") {
+    return 0.0;
+  }
+
   if (weight.length <= 0) {
     return 0.0;
   }

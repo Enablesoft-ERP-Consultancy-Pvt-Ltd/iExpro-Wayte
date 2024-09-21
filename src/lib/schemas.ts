@@ -1,5 +1,10 @@
 import { z } from "zod";
 
+export const ZLoginFormSchema = z.object({
+  username: z.string().min(1),
+  password: z.string().min(1),
+});
+
 export const ZPurchaseReceiveDetailSchema = z.object({
   // PurchaseReceiveDetailId INTEGER PRIMARY KEY,
   PurchaseReceiveId: z.number(),

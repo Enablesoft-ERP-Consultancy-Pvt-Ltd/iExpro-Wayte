@@ -76,8 +76,7 @@ const WeightServiceForm = () => {
       onSubmit: async (v, c) => {
         try {
           const new_v: Record<string, unknown> = {};
-          console.log("original form body:", v)
-
+          console.log("original form body:", v);
 
           for (const l of Object.entries(v)) {
             if (typeof l[1] === "string" && l[1].trim().length === 0) {
@@ -101,7 +100,7 @@ const WeightServiceForm = () => {
             binnumber: new_v.bin_number,
             vendorlotnumber: new_v.VendorLotNumber,
           });
-          console.log("final payload:", body.payload)
+          console.log("final payload:", body.payload);
           const res = await fetch(
             `${import.meta.env.VITE_BACKEND_BASE_URL}/record/create`,
             {
@@ -585,12 +584,12 @@ const WeightServiceForm = () => {
           </TextField>
         </div>
         {/* bell weight */}
-        {/* <div>
-          <Label for="bell_weight">Bell weight</Label>
-          <TextField name="bell_weight">
+        <div>
+          <Label for="bellweight">Bell weight</Label>
+          <TextField name="bellweight">
             <TextFieldInput type="text" placeholder="Bell weight" />
           </TextField>
-        </div> */}
+        </div>
 
         {/* rate */}
         <div>

@@ -154,7 +154,8 @@ const WeightServiceForm = () => {
 
     const unlisten = await listen("weight-read", (event) => {
       const w = event.payload as string;
-      setFields("BellWeight", parseFloatFromRawWeight(w), true);
+      setFields("bellweight", parseFloatFromRawWeight(w), true);
+      setFields("bell_weight", parseFloatFromRawWeight(w), true);
     });
     setUnlisten(() => unlisten);
   });

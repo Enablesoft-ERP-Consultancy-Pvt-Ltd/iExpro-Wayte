@@ -89,7 +89,7 @@ const WeightServiceForm = () => {
           const body = Body.json({
             // ...new_v,
             rate: new_v.rate,
-            bellweight: parseFloatFromRawWeight(v.bellweight as string),
+            bellweight: parseFloatFromRawWeight(new_v.bellweight as string),
             balenumber: new_v.bale_number,
             quantityreturn: new_v.return_quantity,
             netamount: new_v.amount,

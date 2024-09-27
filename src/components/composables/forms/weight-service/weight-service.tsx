@@ -76,6 +76,8 @@ const WeightServiceForm = () => {
       onSubmit: async (v, c) => {
         try {
           const new_v: Record<string, unknown> = {};
+          console.log("original form body:", v)
+
 
           for (const l of Object.entries(v)) {
             if (typeof l[1] === "string" && l[1].trim().length === 0) {
@@ -84,7 +86,7 @@ const WeightServiceForm = () => {
             }
             new_v[l[0]] = l[1];
           }
-
+          console.log("temp body ", new_v);
           const body = Body.json({
             ...new_v,
             rate: new_v.rate,
@@ -99,7 +101,7 @@ const WeightServiceForm = () => {
             binnumber: new_v.bin_number,
             vendorlotnumber: new_v.VendorLotNumber,
           });
-          console.log(body);
+          console.log("final payload:", body.payload)
           const res = await fetch(
             `${import.meta.env.VITE_BACKEND_BASE_URL}/record/create`,
             {
@@ -155,7 +157,6 @@ const WeightServiceForm = () => {
     const unlisten = await listen("weight-read", (event) => {
       const w = event.payload as string;
       const parsedFloat = parseFloatFromRawWeight(w);
-      setFields("bell_weight", parsedFloat, true);
       setFields("bellweight", parsedFloat, true);
     });
     setUnlisten(() => unlisten);
@@ -584,12 +585,12 @@ const WeightServiceForm = () => {
           </TextField>
         </div>
         {/* bell weight */}
-        <div>
+        {/* <div>
           <Label for="bell_weight">Bell weight</Label>
           <TextField name="bell_weight">
             <TextFieldInput type="text" placeholder="Bell weight" />
           </TextField>
-        </div>
+        </div> */}
 
         {/* rate */}
         <div>

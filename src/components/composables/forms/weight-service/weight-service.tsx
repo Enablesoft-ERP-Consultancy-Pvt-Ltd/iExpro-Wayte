@@ -87,7 +87,7 @@ const WeightServiceForm = () => {
           }
           console.log("temp body ", new_v);
           const body = Body.json({
-            // ...new_v,
+            ...new_v,
             rate: new_v.rate,
             bellweight: new_v.bellweight,
             balenumber: new_v.bale_number,

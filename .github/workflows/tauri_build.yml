@@ -76,6 +76,7 @@ jobs:
         if: matrix.platform == 'windows-latest'
         with:
           name: windows-x86_64
+          retention-days: 7
           path: |
             src-tauri/target/release/bundle/msi/*.zip*
             src-tauri/target/release/bundle/nsis/*.zip*

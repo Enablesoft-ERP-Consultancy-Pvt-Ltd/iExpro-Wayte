@@ -88,7 +88,7 @@ const WeightServiceForm = () => {
           const body = Body.json({
             ...new_v,
             rate: new_v.rate,
-            bellweight: parseFloatFromRawWeight(new_v.bell_weight as string),
+            bellweight: parseFloatFromRawWeight(new_v.bellweight as string),
             balenumber: new_v.bale_number,
             quantityreturn: new_v.return_quantity,
             netamount: new_v.amount,
@@ -154,8 +154,9 @@ const WeightServiceForm = () => {
 
     const unlisten = await listen("weight-read", (event) => {
       const w = event.payload as string;
-      setFields("bellweight", parseFloatFromRawWeight(w), true);
-      setFields("bell_weight", parseFloatFromRawWeight(w), true);
+      const parsedFloat = parseFloatFromRawWeight(w);
+      setFields("bell_weight", parsedFloat, true);
+      setFields("bellweight", parsedFloat, true);
     });
     setUnlisten(() => unlisten);
   });
